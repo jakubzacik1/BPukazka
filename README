@@ -1,0 +1,4 @@
+Dobrý deň,
+Tento priečinok obsahuje predstavenie ukážky výsledkov mojej bakalárskej práce na tému Využitie pohybových senzorov v Android hre.
+Výsledky práce sú tri typy hier, vytvorené za pomoci framerowku a bez jeho použitia, pričom vo svojej logike využívajú pohybový senzor zariadenia.
+Na tvorbu hier boli použité nástroje Android Studio (JAVA) a Unity Engine (C#).
