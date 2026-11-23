@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    Android 12+ backup rules. Only the configuration (and, if the user opted in,
+    the photo) is backed up. Runtime state (temporary unlocks, running challenges)
+    lives in noBackupFilesDir and is never backed up.
+-->
+<data-extraction-rules>
+    <cloud-backup>
+        <include domain="file" path="config/" />
+        <include domain="file" path="photo_backup/" />
+    </cloud-backup>
+    <device-transfer>
+        <include domain="file" path="config/" />
+        <include domain="file" path="photo_backup/" />
+    </device-transfer>
+</data-extraction-rules>

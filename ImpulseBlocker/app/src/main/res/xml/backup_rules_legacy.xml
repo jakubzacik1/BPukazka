@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Android 10/11 Auto Backup rules (same content as data_extraction_rules.xml). -->
+<full-backup-content>
+    <include domain="file" path="config/" />
+    <include domain="file" path="photo_backup/" />
+</full-backup-content>

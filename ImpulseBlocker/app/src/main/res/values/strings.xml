@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Impulse Blocker</string>
+    <string name="accessibility_service_label">Impulse Blocker – app blocking</string>
+    <string name="accessibility_description">Impulse Blocker uses this permission only to learn which app is opened (its package name), so it can cover apps you chose to block with a blocking screen. It does not read screen content, text you type, or anything inside other apps, and nothing leaves your device.</string>
+</resources>
