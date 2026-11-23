@@ -17,6 +17,17 @@ android {
         versionName = "1.0.0"
     }
 
+    // Fixed debug key (public, password "android") so every build - local or CI -
+    // can update an installed copy without uninstalling (which would wipe settings).
+    signingConfigs {
+        getByName("debug") {
+            storeFile = file("debug.keystore")
+            storePassword = "android"
+            keyAlias = "androiddebugkey"
+            keyPassword = "android"
+        }
+    }
+
     buildTypes {
         release {
             isMinifyEnabled = false

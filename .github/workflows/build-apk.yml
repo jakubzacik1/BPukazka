@@ -1,0 +1,30 @@
+name: Build Impulse Blocker APK
+
+on:
+  push:
+    branches: [claude/android-app-website-blocker-0lfper]
+    paths: ["ImpulseBlocker/**", ".github/workflows/build-apk.yml"]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ImpulseBlocker
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "17"
+      - name: Unit tests and debug APK
+        run: |
+          chmod +x gradlew
+          ./gradlew :core:test assembleDebug --stacktrace --console=plain
+      - name: Upload APK
+        uses: actions/upload-artifact@v4
+        with:
+          name: impulse-blocker-debug-apk
+          path: ImpulseBlocker/app/build/outputs/apk/debug/app-debug.apk
+          if-no-files-found: error
