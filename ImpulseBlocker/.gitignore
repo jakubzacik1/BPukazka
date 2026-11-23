@@ -8,5 +8,5 @@ build/
 .externalNativeBuild
 .cxx
 *.keystore
-!debug.keystore
 .kotlin/
+*.p12

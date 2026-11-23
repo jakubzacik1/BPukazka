@@ -17,14 +17,18 @@ android {
         versionName = "1.0.0"
     }
 
-    // Fixed debug key (public, password "android") so every build - local or CI -
-    // can update an installed copy without uninstalling (which would wipe settings).
-    signingConfigs {
-        getByName("debug") {
-            storeFile = file("debug.keystore")
-            storePassword = "android"
-            keyAlias = "androiddebugkey"
-            keyPassword = "android"
+    // Signing key comes from the environment (GitHub Secrets in CI), never from the repo.
+    // Without it (e.g. a local Android Studio build) the standard per-machine debug key is used.
+    val signingFile = System.getenv("SIGNING_KEYSTORE_FILE")
+    val signingPassword = System.getenv("SIGNING_PASSWORD")
+    if (signingFile != null && signingPassword != null) {
+        signingConfigs {
+            getByName("debug") {
+                storeFile = file(signingFile)
+                storePassword = signingPassword
+                keyAlias = "impulseblocker"
+                keyPassword = signingPassword
+            }
         }
     }
 

@@ -18,7 +18,19 @@ jobs:
         with:
           distribution: temurin
           java-version: "17"
+      - name: Restore signing key from GitHub Secrets
+        env:
+          SIGNING_KEYSTORE_B64: ${{ secrets.SIGNING_KEYSTORE_B64 }}
+        run: |
+          if [ -z "$SIGNING_KEYSTORE_B64" ]; then
+            echo "::error::Secret SIGNING_KEYSTORE_B64 is missing (Settings > Secrets and variables > Actions)."
+            exit 1
+          fi
+          echo "$SIGNING_KEYSTORE_B64" | base64 -d > "$RUNNER_TEMP/signing.p12"
+          echo "SIGNING_KEYSTORE_FILE=$RUNNER_TEMP/signing.p12" >> "$GITHUB_ENV"
       - name: Unit tests and debug APK
+        env:
+          SIGNING_PASSWORD: ${{ secrets.SIGNING_PASSWORD }}
         run: |
           chmod +x gradlew
           ./gradlew :core:test assembleDebug --stacktrace --console=plain
